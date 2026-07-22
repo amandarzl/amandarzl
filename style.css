@@ -1,0 +1,245 @@
+body {
+  background: url("assets/wallpaper3.jpg") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#bedroom {
+  background: url("assets/bedroom.png") no-repeat center center;
+  background-size: contain;
+  display: inline-block;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+#game-container {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  
+}
+
+canvas {
+  background: #eee;
+  width: 90vw;
+  max-width: 640px;
+  height: auto;
+  image-rendering: pixelated;
+  display: block;
+  border: 4px solid #444;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+#music-notes {
+  position: absolute;
+  top: 10%;
+  left: 66%;
+  transform: translateX(-50%);
+  display: none;
+  z-index: 500;
+  animation: floatUp 10s ease-in-out;
+}
+
+#music-notes img {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+#hint-bubble {
+  position: absolute;
+  display: none;
+  background: rgba(248, 240, 236, 0.85);
+  color: rgb(180, 130, 30);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 12px;
+  border: 2px solid #f0c060;
+  border-radius: 4px;
+  white-space: nowrap;
+  transform: translate(-50%, -180%);
+  z-index: 1000;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  
+}
+#hintText {
+  margin: 5px 5px 10px;
+}
+
+
+#stationYes, #stationNo {
+  display: inline-block;
+  margin: 5px 5px 0 5px;
+  padding: 5px;
+  min-width: 40px;
+  line-height: 1;
+  background-color: #f0c060;
+  color: white;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#hitEnter{
+  color: rgba(95, 92, 92, 0.718);
+  margin-top: 10px;
+  font-size: 8px;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  background: #fff8ea;
+  color: #5a3d12;
+  border: 3px solid #d9a33c;
+  border-radius: 10px;
+  padding: 24px 28px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: #5a3d12;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  margin: 0 0 6px;
+  font-size: 12px;
+}
+
+.modal-content a,
+.modal-content p {
+  color: #5a3d12;
+  text-decoration: none;
+  margin: 0;
+}
+
+.contact-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 14px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-avatar {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  background-image: url("assets/character_idle.PNG");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+/* sleep */
+.sleep-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 3000;
+  padding: 20px;
+}
+
+.sleep-overlay.active {
+  display: flex;
+}
+
+.sleep-screen {
+  text-align: center;
+  color: #fff;
+  max-width: 80vw;
+}
+
+.sleep-screen img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 auto 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sleep-screen p {
+  margin: 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.sleep-screen {
+  text-align: center;
+  color: #fff;
+  max-width: 80vw;
+}
+
+.sleep-screen img {
+  display: block;
+  max-width: 50%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 auto 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sleep-screen p {
+  margin: 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+}
