@@ -1,400 +1,339 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mandy's Desktop</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Poppins:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="desktop.css" />
-</head>
-<body>
-
-  <div class="desktop-screen"> 
-  <!-- Menu Bar -->
-  <header class="menubar">
-    <div class="menubar-left">
-      <span class="menubar-logo">🍏</span>
-      <span class="menubar-title">apple pie</span>
-      <!-- <span class="menubar-item">File</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mandy's Desktop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Poppins:wght@400;500&family=Caveat:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="desktop.css" />
+  </head>
+  <body>
+    <div class="desktop-screen">
+      <!-- Menu Bar -->
+      <header class="menubar">
+        <div class="menubar-left">
+          <span class="menubar-logo">🍏</span>
+          <span class="menubar-title">apple pie</span>
+          <!-- <span class="menubar-item">File</span>
       <span class="menubar-item">Edit</span>
       <span class="menubar-item">View</span> -->
-    </div>
-    <div class="menubar-right">
-      <span class="menubar-clock" id="clock"> </span>
-    </div>
-  </header>
+        </div>
+        <div class="menubar-right">
+          <span class="menubar-clock" id="clock"> </span>
+        </div>
+      </header>
 
-  <div class="desktop-stage">
-    <!-- Desktop -->
-    <main id="desktop">
+      <div class="desktop-stage">
+        <!-- Desktop -->
+        <main id="desktop">
+          <!-- Desktop icons -->
+          <div class="icon-grid">
+            <div class="folder" data-window="resumeWindow">
+              <div class="folder-icon folder-icon--resume">
+                <img
+                  class="folder-icon__img"
+                  src="/assets/folders/folder1.png"
+                  alt="Resume icon"
+                />
+              </div>
+              <span class="folder-label">Resume</span>
+            </div>
 
-      <!-- Desktop icons -->
-      <div class="icon-grid">
-        <div class="folder" data-window="resumeWindow">
-          <div class="folder-icon folder-icon--resume">
-            <img class="folder-icon__img" src="/assets/folders/folder1.png" alt="Resume icon" />
+            <div class="folder" data-window="projectsWindow">
+              <div class="folder-icon folder-icon--projects">
+                <img
+                  class="folder-icon__img"
+                  src="/assets/folders/folder2.png"
+                  alt="Projects icon"
+                />
+              </div>
+              <span class="folder-label">Projects</span>
+            </div>
+
+            <div class="folder" data-window="galleryWindow">
+              <div class="folder-icon folder-icon--gallery">
+                <img
+                  class="folder-icon__img"
+                  src="/assets/folders/folder3.png"
+                  alt="Gallery icon"
+                />
+              </div>
+              <span class="folder-label">Gallery</span>
+            </div>
+
+            <div class="folder" data-window="aboutWindow">
+              <div class="folder-icon folder-icon--about">
+                <img
+                  class="folder-icon__img"
+                  src="/assets/folders/folder4.png"
+                  alt="About icon"
+                />
+              </div>
+              <span class="folder-label">About Me</span>
+            </div>
           </div>
-          <span class="folder-label">Resume</span>
-        </div>
+        </main>
 
-        <div class="folder" data-window="projectsWindow">
-          <div class="folder-icon folder-icon--projects">
-            <img class="folder-icon__img" src="/assets/folders/folder2.png" alt="Projects icon" />
+        <!-- ===== Windows ===== -->
+
+        <!-- Resume Window -->
+        <div
+          class="window"
+          id="resumeWindow"
+          data-default-w="560"
+          data-default-h="420"
+          data-default-top="40"
+          data-default-left="220"
+        >
+          <div class="window-header">
+            <div class="window-controls">
+              <button
+                class="window-control window-control--min"
+                data-action="min"
+                aria-label="Minimize"
+              >
+                —
+              </button>
+              <button
+                class="window-control window-control--max"
+                data-action="max"
+                aria-label="Toggle fullscreen"
+              >
+                ▢
+              </button>
+              <button
+                class="window-control window-control--close"
+                data-action="close"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            <span class="window-title">Resume.pdf</span>
+            <span class="window-spacer"></span>
           </div>
-          <span class="folder-label">Projects</span>
-        </div>
-
-        <div class="folder" data-window="galleryWindow">
-          <div class="folder-icon folder-icon--gallery">
-            <img class="folder-icon__img" src="/assets/folders/folder3.png" alt="Gallery icon" />
+          <div class="window-body">
+            <h2>Amanda Christy S. Ruazol</h2>
+            <p class="window-sub">Frontend / Web Developer</p>
+            <p>
+              Associate Software Engineer with a focus on JavaScript,
+              TypeScript, and crafting cozy, detail-oriented frontend
+              experiences. Currently building out a portfolio that blends clean
+              code with handcrafted, game-inspired design.
+            </p>
+            <h3>Skills</h3>
+            <ul class="window-list">
+              <li>JavaScript &amp; TypeScript</li>
+              <li>HTML5 Canvas &amp; interactive UI</li>
+              <li>Frontend architecture &amp; team coding standards</li>
+            </ul>
           </div>
-          <span class="folder-label">Gallery</span>
         </div>
 
-        <div class="folder" data-window="aboutWindow">
-          <div class="folder-icon folder-icon--about">
-            <img class="folder-icon__img" src="/assets/folders/folder4.png" alt="About icon" />
+        <!-- Projects Window -->
+        <div
+          class="window"
+          id="projectsWindow"
+          data-default-w="600"
+          data-default-h="440"
+          data-default-top="120"
+          data-default-left="240"
+        >
+          <div class="window-header">
+            <div class="window-controls">
+              <button
+                class="window-control window-control--min"
+                data-action="min"
+                aria-label="Minimize"
+              >
+                —
+              </button>
+              <button
+                class="window-control window-control--max"
+                data-action="max"
+                aria-label="Toggle fullscreen"
+              >
+                ▢
+              </button>
+              <button
+                class="window-control window-control--close"
+                data-action="close"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            <span class="window-title">Projects</span>
+            <span class="window-spacer"></span>
           </div>
-          <span class="folder-label">About Me</span>
-        </div>
-
-      </div>
-
-    </main>
-
-    <!-- ===== Windows ===== -->
-
-    <!-- Resume Window -->
-    <div class="window" id="resumeWindow" data-default-w="560" data-default-h="420" data-default-top="40" data-default-left="220">
-      <div class="window-header">
-        <div class="window-controls">
-          <button class="window-control window-control--min" data-action="min" aria-label="Minimize">—</button>
-          <button class="window-control window-control--max" data-action="max" aria-label="Toggle fullscreen">▢</button>         
-          <button class="window-control window-control--close" data-action="close" aria-label="Close">✕</button>
-        </div>
-        <span class="window-title">Resume.pdf</span>
-        <span class="window-spacer"></span>
-      </div>
-      <div class="window-body">
-        <h2>Amanda Christy S. Ruazol</h2>
-        <p class="window-sub">Frontend / Web Developer</p>
-        <p>Associate Software Engineer with a focus on JavaScript, TypeScript, and crafting cozy, detail-oriented frontend experiences. Currently building out a portfolio that blends clean code with handcrafted, game-inspired design.</p>
-        <h3>Skills</h3>
-        <ul class="window-list">
-          <li>JavaScript &amp; TypeScript</li>
-          <li>HTML5 Canvas &amp; interactive UI</li>
-          <li>Frontend architecture &amp; team coding standards</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Projects Window -->
-    <div class="window" id="projectsWindow" data-default-w="600" data-default-h="440" data-default-top="120" data-default-left="240">
-      <div class="window-header">
-        <div class="window-controls">
-          <button class="window-control window-control--min" data-action="min" aria-label="Minimize">—</button>
-          <button class="window-control window-control--max" data-action="max" aria-label="Toggle fullscreen">▢</button>         
-          <button class="window-control window-control--close" data-action="close" aria-label="Close">✕</button>
-        </div>
-        <span class="window-title">Projects</span>
-        <span class="window-spacer"></span>
-      </div>
-      <div class="window-body">
-        <div class="project-card">
-          <h3>Cozy Town Portfolio</h3>
-          <p>A Stardew Valley-inspired about-me site built with vanilla JS and the Canvas API — walk a character around town to explore.</p>
-        </div>
-        <div class="project-card">
-          <h3>HEARTHLOG</h3>
-          <p>A pixel-art cottagecore practice journal app, reworked from an early pastel concept into a warmer handcrafted theme.</p>
-        </div>
-        <div class="project-card">
-          <h3>Depreciation Services Site</h3>
-          <p>A Next.js 14 portfolio project deployed via Vercel, modeled on a property depreciation services business.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Gallery Window -->
-    <div class="window" id="galleryWindow" data-default-w="560" data-default-h="400" data-default-top="150" data-default-left="260">
-      <div class="window-header">
-        <div class="window-controls">
-          <button class="window-control window-control--min" data-action="min" aria-label="Minimize">—</button>
-          <button class="window-control window-control--max" data-action="max" aria-label="Toggle fullscreen">▢</button>         
-          <button class="window-control window-control--close" data-action="close" aria-label="Close">✕</button>
-        </div>
-        <span class="window-title">Gallery</span>
-        <span class="window-spacer"></span>
-      </div>
-      <div class="window-body">
-        <p>Sketches, OCs, and pixel art live here. Drop your image files in and swap these placeholders out.</p>
-        <div class="gallery-grid">
-          <div class="gallery-tile">🎨</div>
-          <div class="gallery-tile">🪴</div>
-          <div class="gallery-tile">🧶</div>
-          <div class="gallery-tile">🐾</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- About Window -->
-    <div class="window" id="aboutWindow" data-default-w="500" data-default-h="360" data-default-top="180" data-default-left="280">
-      <div class="window-header">
-        <div class="window-controls">
-          <button class="window-control window-control--min" data-action="min" aria-label="Minimize">—</button>
-          <button class="window-control window-control--max" data-action="max" aria-label="Toggle fullscreen">▢</button>         
-          <button class="window-control window-control--close" data-action="close" aria-label="Close">✕</button>
-        </div>
-        <span class="window-title">About Me</span>
-        <span class="window-spacer"></span>
-      </div>
-      <div class="window-body">
-        <h2>Hi, I'm Mandy 🌿</h2>
-        <p>I build cozy, detail-driven web experiences and love mixing technical work with pixel art and handcrafted design. Welcome to my desktop!</p>
-      </div>
-    </div>
-
-  </div>
-
-
-  <!-- Dock -->
-  <nav class="dock" aria-label="Dock">
-    <button class="dock-item" data-window="resumeWindow">
-      <img src="/assets/folders/folder1.png" alt="Resume" />
-      <i>Resume</i>
-    </button>
-    <button class="dock-item" data-window="projectsWindow">
-      <img src="/assets/folders/folder2.png" alt="Projects" />
-      <i>Projects</i>
-    </button>
-    <button class="dock-item" data-window="galleryWindow">
-      <img src="/assets/folders/folder3.png" alt="Gallery" />
-      <i>Gallery</i>
-    </button>
-    <button class="dock-item" data-window="aboutWindow">
-      <img src="/assets/folders/folder4.png" alt="About" />
-      <i>About</i>
-    </button>
-    <span class="dock-divider"></span>
-    <button class="dock-item dock-item--exit" id="dockLogout"><span>⏻</span><i>Log Out</i></button>
-  </nav>
-
-  <!-- Logout confirm modal -->
-  <div class="modal-overlay" id="logoutOverlay">
-    <div class="modal">
-      <!-- <p class="modal__plant">🌿</p> -->
-      <h3>Heading out already?</h3>
-      <p>You'll be logged out and sent back to the homepage.</p>
-      <div class="modal__actions">
-        <button class="modal__btn modal__btn--no" id="logoutNo">Stay</button>
-        <button class="modal__btn modal__btn--yes" id="logoutYes">Log Out</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="desktop.js"></script>
-  </div>
-</body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mandy's Desktop</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Poppins:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="desktop.css" />
-</head>
-<body>
-
-  <div class="desktop-screen"> 
-  <!-- Menu Bar -->
-  <header class="menubar">
-    <div class="menubar-left">
-      <span class="menubar-logo">🍏</span>
-      <span class="menubar-title">apple pie</span>
-      <!-- <span class="menubar-item">File</span>
-      <span class="menubar-item">Edit</span>
-      <span class="menubar-item">View</span> -->
-    </div>
-    <div class="menubar-right">
-      <span class="menubar-clock" id="clock"> </span>
-    </div>
-  </header>
-
-  <div class="desktop-stage">
-    <!-- Desktop -->
-    <main id="desktop">
-
-      <!-- Desktop icons -->
-      <div class="icon-grid">
-        <div class="folder" data-window="resumeWindow">
-          <div class="folder-icon folder-icon--resume">
-            <img class="folder-icon__img" src="/assets/folders/folder1.png" alt="Resume icon" />
+          <div class="window-body">
+            <div class="project-card">
+              <h3>Cozy Town Portfolio</h3>
+              <p>
+                A Stardew Valley-inspired about-me site built with vanilla JS
+                and the Canvas API — walk a character around town to explore.
+              </p>
+            </div>
+            <div class="project-card">
+              <h3>HEARTHLOG</h3>
+              <p>
+                A pixel-art cottagecore practice journal app, reworked from an
+                early pastel concept into a warmer handcrafted theme.
+              </p>
+            </div>
+            <div class="project-card">
+              <h3>Depreciation Services Site</h3>
+              <p>
+                A Next.js 14 portfolio project deployed via Vercel, modeled on a
+                property depreciation services business.
+              </p>
+            </div>
           </div>
-          <span class="folder-label">Resume</span>
         </div>
 
-        <div class="folder" data-window="projectsWindow">
-          <div class="folder-icon folder-icon--projects">
-            <img class="folder-icon__img" src="/assets/folders/folder2.png" alt="Projects icon" />
+        <!-- Gallery Window -->
+        <div
+          class="window"
+          id="galleryWindow"
+          data-default-w="560"
+          data-default-h="400"
+          data-default-top="150"
+          data-default-left="260"
+        >
+          <div class="window-header">
+            <div class="window-controls">
+              <button
+                class="window-control window-control--min"
+                data-action="min"
+                aria-label="Minimize"
+              >
+                —
+              </button>
+              <button
+                class="window-control window-control--max"
+                data-action="max"
+                aria-label="Toggle fullscreen"
+              >
+                ▢
+              </button>
+              <button
+                class="window-control window-control--close"
+                data-action="close"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            <span class="window-title">Gallery</span>
+            <span class="window-spacer"></span>
           </div>
-          <span class="folder-label">Projects</span>
-        </div>
-
-        <div class="folder" data-window="galleryWindow">
-          <div class="folder-icon folder-icon--gallery">
-            <img class="folder-icon__img" src="/assets/folders/folder3.png" alt="Gallery icon" />
+          <div class="window-body">
+            <p>
+              Sketches, OCs, and pixel art live here. Drop your image files in
+              and swap these placeholders out.
+            </p>
+            <div class="gallery-grid">
+              <div class="gallery-tile">🎨</div>
+              <div class="gallery-tile">🪴</div>
+              <div class="gallery-tile">🧶</div>
+              <div class="gallery-tile">🐾</div>
+            </div>
           </div>
-          <span class="folder-label">Gallery</span>
         </div>
 
-        <div class="folder" data-window="aboutWindow">
-          <div class="folder-icon folder-icon--about">
-            <img class="folder-icon__img" src="/assets/folders/folder4.png" alt="About icon" />
+        <!-- About Window -->
+        <div
+          class="window"
+          id="aboutWindow"
+          data-default-w="500"
+          data-default-h="360"
+          data-default-top="180"
+          data-default-left="280"
+        >
+          <div class="window-header">
+            <div class="window-controls">
+              <button
+                class="window-control window-control--min"
+                data-action="min"
+                aria-label="Minimize"
+              >
+                —
+              </button>
+              <button
+                class="window-control window-control--max"
+                data-action="max"
+                aria-label="Toggle fullscreen"
+              >
+                ▢
+              </button>
+              <button
+                class="window-control window-control--close"
+                data-action="close"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            <span class="window-title">About Me</span>
+            <span class="window-spacer"></span>
           </div>
-          <span class="folder-label">About Me</span>
+          <div class="window-body">
+            <h2>Hi, I'm Mandy 🌿</h2>
+            <p>
+              I build cozy, detail-driven web experiences and love mixing
+              technical work with pixel art and handcrafted design. Welcome to
+              my desktop!
+            </p>
+          </div>
         </div>
-
       </div>
 
-    </main>
+      <!-- Dock -->
+      <nav class="dock" aria-label="Dock">
+        <button class="dock-item" data-window="resumeWindow">
+          <img src="/assets/folders/folder1.png" alt="Resume" />
+          <i>Resume</i>
+        </button>
+        <button class="dock-item" data-window="projectsWindow">
+          <img src="/assets/folders/folder2.png" alt="Projects" />
+          <i>Projects</i>
+        </button>
+        <button class="dock-item" data-window="galleryWindow">
+          <img src="/assets/folders/folder3.png" alt="Gallery" />
+          <i>Gallery</i>
+        </button>
+        <button class="dock-item" data-window="aboutWindow">
+          <img src="/assets/folders/folder4.png" alt="About" />
+          <i>About</i>
+        </button>
+        <span class="dock-divider"></span>
+        <button class="dock-item dock-item--exit" id="dockLogout">
+          <span>⏻</span><i>Log Out</i>
+        </button>
+      </nav>
 
-    <!-- ===== Windows ===== -->
-
-    <!-- Resume Window -->
-    <div class="window" id="resumeWindow" data-default-w="560" data-default-h="420" data-default-top="40" data-default-left="220">
-      <div class="window-header">
-        <div class="window-controls">
-          <button class="window-control window-control--min" data-action="min" aria-label="Minimize">—</button>
-          <button class="window-control window-control--max" data-action="max" aria-label="Toggle fullscreen">▢</button>         
-          <button class="window-control window-control--close" data-action="close" aria-label="Close">✕</button>
+      <!-- Logout confirm modal -->
+      <div class="modal-overlay" id="logoutOverlay">
+        <div class="modal">
+          <!-- <p class="modal__plant">🌿</p> -->
+          <h3>Heading out already?</h3>
+          <p>You'll be logged out and sent back to the homepage.</p>
+          <div class="modal__actions">
+            <button class="modal__btn modal__btn--no" id="logoutNo">
+              Stay
+            </button>
+            <button class="modal__btn modal__btn--yes" id="logoutYes">
+              Log Out
+            </button>
+          </div>
         </div>
-        <span class="window-title">Resume.pdf</span>
-        <span class="window-spacer"></span>
       </div>
-      <div class="window-body">
-        <h2>Amanda Christy S. Ruazol</h2>
-        <p class="window-sub">Frontend / Web Developer</p>
-        <p>Associate Software Engineer with a focus on JavaScript, TypeScript, and crafting cozy, detail-oriented frontend experiences. Currently building out a portfolio that blends clean code with handcrafted, game-inspired design.</p>
-        <h3>Skills</h3>
-        <ul class="window-list">
-          <li>JavaScript &amp; TypeScript</li>
-          <li>HTML5 Canvas &amp; interactive UI</li>
-          <li>Frontend architecture &amp; team coding standards</li>
-        </ul>
-      </div>
+
+      <script src="desktop.js"></script>
     </div>
-
-    <!-- Projects Window -->
-    <div class="window" id="projectsWindow" data-default-w="600" data-default-h="440" data-default-top="120" data-default-left="240">
-      <div class="window-header">
-        <div class="window-controls">
-          <button class="window-control window-control--min" data-action="min" aria-label="Minimize">—</button>
-          <button class="window-control window-control--max" data-action="max" aria-label="Toggle fullscreen">▢</button>         
-          <button class="window-control window-control--close" data-action="close" aria-label="Close">✕</button>
-        </div>
-        <span class="window-title">Projects</span>
-        <span class="window-spacer"></span>
-      </div>
-      <div class="window-body">
-        <div class="project-card">
-          <h3>Cozy Town Portfolio</h3>
-          <p>A Stardew Valley-inspired about-me site built with vanilla JS and the Canvas API — walk a character around town to explore.</p>
-        </div>
-        <div class="project-card">
-          <h3>HEARTHLOG</h3>
-          <p>A pixel-art cottagecore practice journal app, reworked from an early pastel concept into a warmer handcrafted theme.</p>
-        </div>
-        <div class="project-card">
-          <h3>Depreciation Services Site</h3>
-          <p>A Next.js 14 portfolio project deployed via Vercel, modeled on a property depreciation services business.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Gallery Window -->
-    <div class="window" id="galleryWindow" data-default-w="560" data-default-h="400" data-default-top="150" data-default-left="260">
-      <div class="window-header">
-        <div class="window-controls">
-          <button class="window-control window-control--min" data-action="min" aria-label="Minimize">—</button>
-          <button class="window-control window-control--max" data-action="max" aria-label="Toggle fullscreen">▢</button>         
-          <button class="window-control window-control--close" data-action="close" aria-label="Close">✕</button>
-        </div>
-        <span class="window-title">Gallery</span>
-        <span class="window-spacer"></span>
-      </div>
-      <div class="window-body">
-        <p>Sketches, OCs, and pixel art live here. Drop your image files in and swap these placeholders out.</p>
-        <div class="gallery-grid">
-          <div class="gallery-tile">🎨</div>
-          <div class="gallery-tile">🪴</div>
-          <div class="gallery-tile">🧶</div>
-          <div class="gallery-tile">🐾</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- About Window -->
-    <div class="window" id="aboutWindow" data-default-w="500" data-default-h="360" data-default-top="180" data-default-left="280">
-      <div class="window-header">
-        <div class="window-controls">
-          <button class="window-control window-control--min" data-action="min" aria-label="Minimize">—</button>
-          <button class="window-control window-control--max" data-action="max" aria-label="Toggle fullscreen">▢</button>         
-          <button class="window-control window-control--close" data-action="close" aria-label="Close">✕</button>
-        </div>
-        <span class="window-title">About Me</span>
-        <span class="window-spacer"></span>
-      </div>
-      <div class="window-body">
-        <h2>Hi, I'm Mandy 🌿</h2>
-        <p>I build cozy, detail-driven web experiences and love mixing technical work with pixel art and handcrafted design. Welcome to my desktop!</p>
-      </div>
-    </div>
-
-  </div>
-
-
-  <!-- Dock -->
-  <nav class="dock" aria-label="Dock">
-    <button class="dock-item" data-window="resumeWindow">
-      <img src="/assets/folders/folder1.png" alt="Resume" />
-      <i>Resume</i>
-    </button>
-    <button class="dock-item" data-window="projectsWindow">
-      <img src="/assets/folders/folder2.png" alt="Projects" />
-      <i>Projects</i>
-    </button>
-    <button class="dock-item" data-window="galleryWindow">
-      <img src="/assets/folders/folder3.png" alt="Gallery" />
-      <i>Gallery</i>
-    </button>
-    <button class="dock-item" data-window="aboutWindow">
-      <img src="/assets/folders/folder4.png" alt="About" />
-      <i>About</i>
-    </button>
-    <span class="dock-divider"></span>
-    <button class="dock-item dock-item--exit" id="dockLogout"><span>⏻</span><i>Log Out</i></button>
-  </nav>
-
-  <!-- Logout confirm modal -->
-  <div class="modal-overlay" id="logoutOverlay">
-    <div class="modal">
-      <!-- <p class="modal__plant">🌿</p> -->
-      <h3>Heading out already?</h3>
-      <p>You'll be logged out and sent back to the homepage.</p>
-      <div class="modal__actions">
-        <button class="modal__btn modal__btn--no" id="logoutNo">Stay</button>
-        <button class="modal__btn modal__btn--yes" id="logoutYes">Log Out</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="desktop.js"></script>
-  </div>
-</body>
->>>>>>> 85ffab3bead5f050ecdac1ff3af8a77c64971bf2
+  </body>
 </html>
