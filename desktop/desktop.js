@@ -185,11 +185,10 @@ document.querySelectorAll(".window-header").forEach((header) => {
     if (e.target.closest(".window-control")) return;
 
     if (win.classList.contains("is-maximized")) {
-      restoreWindow(win); // ✅ ensures dragging restores first
+      restoreWindow(win);
     }
 
     dragging = true;
-    header.setPointerCapture(e.pointerId);
     const rect = win.getBoundingClientRect();
     offsetX = e.clientX - rect.left;
     offsetY = e.clientY - rect.top;
@@ -216,7 +215,6 @@ document.querySelectorAll(".window-header").forEach((header) => {
   document.addEventListener("pointerup", (e) => {
     if (!dragging) return;
     dragging = false;
-    header.releasePointerCapture(e.pointerId);
   });
 });
 
