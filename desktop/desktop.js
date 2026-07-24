@@ -181,7 +181,7 @@ document.querySelectorAll(".window-header").forEach((header) => {
 
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-  header.addEventListener("mousedown", (e) => {
+  header.addEventListener("pointerdown", (e) => {
     if (e.target.closest(".window-control")) return;
 
     if (win.classList.contains("is-maximized")) {
@@ -189,6 +189,7 @@ document.querySelectorAll(".window-header").forEach((header) => {
     }
 
     dragging = true;
+    header.setPointerCapture(e.pointerId);
     const rect = win.getBoundingClientRect();
     offsetX = e.clientX - rect.left;
     offsetY = e.clientY - rect.top;
@@ -196,7 +197,7 @@ document.querySelectorAll(".window-header").forEach((header) => {
     e.preventDefault();
   });
 
-  document.addEventListener("mousemove", (e) => {
+  document.addEventListener("pointermove", (e) => {
     if (!dragging) return;
 
     const stageRect = stage.getBoundingClientRect();
@@ -212,8 +213,10 @@ document.querySelectorAll(".window-header").forEach((header) => {
     win.style.top = `${clamp(nextTop, minTop, maxTop)}px`;
   });
 
-  document.addEventListener("mouseup", () => {
+  document.addEventListener("pointerup", (e) => {
+    if (!dragging) return;
     dragging = false;
+    header.releasePointerCapture(e.pointerId);
   });
 });
 

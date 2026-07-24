@@ -245,6 +245,7 @@ body {
   gap: 10px;
   cursor: grab;
   font-family: var(--font-display);
+  touch-action: none;
 }
 .window-header:active {
   cursor: grabbing;
