@@ -59,6 +59,12 @@ function openWindow(id) {
     win.classList.remove("is-minimized");
     win.classList.add("is-open");
     win.style.display = "flex";
+
+    // Restore fullscreen if it was maximized before minimizing
+    if (win.dataset.wasMaximized === "true") {
+      delete win.dataset.wasMaximized;
+      maximizeWindow(win);
+    }
   } else if (wasClosed) {
     win.classList.add("is-open");
     win.style.display = "flex";
@@ -83,11 +89,15 @@ function closeWindow(win) {
 }
 
 function minimizeWindow(win) {
+  // Track if window was maximized so we can restore fullscreen on reopen
   if (win.classList.contains("is-maximized")) {
-    restoreWindow(win);
+    win.dataset.wasMaximized = "true";
+    win.classList.remove("is-maximized");
+  } else {
+    delete win.dataset.wasMaximized;
   }
 
-  win.classList.remove("is-open", "is-maximized");
+  win.classList.remove("is-open");
   win.classList.add("is-minimized");
   win.style.display = "none";
   updateDockForWindow(win);
@@ -185,13 +195,30 @@ document.querySelectorAll(".window-header").forEach((header) => {
     if (e.target.closest(".window-control")) return;
 
     if (win.classList.contains("is-maximized")) {
-      restoreWindow(win);
+      // Keep fullscreen size but remove the is-maximized class
+      // so CSS !important rules don't block dragging
+      const stageRect = stage.getBoundingClientRect();
+      win.dataset.prevTop = "0";
+      win.dataset.prevLeft = "0";
+      win.dataset.prevWidth = stageRect.width + "px";
+      win.dataset.prevHeight = stageRect.height + "px";
+      win.classList.remove("is-maximized");
+      win.style.top = "0";
+      win.style.left = "0";
+      win.style.width = stageRect.width + "px";
+      win.style.height = stageRect.height + "px";
+      win.style.borderRadius = "0";
+
+      const rect = win.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+    } else {
+      const rect = win.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
     }
 
     dragging = true;
-    const rect = win.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
     focusWindow(win);
     e.preventDefault();
   });
