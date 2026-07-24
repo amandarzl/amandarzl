@@ -52,4 +52,10 @@ modal.addEventListener("click", (e) => {
 });
 
 // Burger menu toggle
-burgerBtn.addEventListener("click", () => navMenu.classList.toggle("active"));
+// burgerBtn.addEventListener("click", () => navMenu.classList.toggle("active"));
+
+const goBack = document.getElementById("goBack");
+goBack.addEventListener("click", () => {
+  window.location.href = "../index.html";
+});
+console.log(goBack);

@@ -11,23 +11,40 @@ body {
   height: 100%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  background-color: #fff8e6;
 }
 
-#videoBackground {
+/* #videoBackground {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
+  z-index: -100;
   pointer-events: none;
   object-fit: cover;
   animation: fadeIn 2s ease-in forwards;
-}
+  background: #000;
+} */
 
 /* Hide scrollbar visually */
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 10px;
+  background-color: gray;
+}
+
+.btn-go-back {
+  text-decoration: none;
+  background-color: beige;
+  border-radius: 10px;
+  font-size: 15px;
 }
 
 /* Sidebar */
@@ -84,7 +101,7 @@ body::-webkit-scrollbar {
 
 .gallery-item:hover img {
   transform: scale(1.03);
-  box-shadow: 0 14px 20px rgba(0, 0, 0, 30); /* deeper hover shadow */
+  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.75); /* deeper hover shadow */
 }
 .gallery-item p {
   margin-top: 20px;

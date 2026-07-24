@@ -1,7 +1,7 @@
 [
   {
     "src": "../assets/wallpaper2.jpg",
-    "title": "Dreamscape",
+    "title": "dreamscape.jpg",
     "note": "A surreal night illustration."
   },
   {
@@ -16,13 +16,13 @@
   },
   {
     "src": "./gallery-assets/illustration3.png",
-    "title": "Escape",
+    "title": "escape.jpg",
     "note": "escape for 5pm sunsets"
   },
   {
     "src": "./gallery-assets/illustration4.jpg",
-    "title": "Morning Glow",
-    "note": "Soft light study."
+    "title": "pink.jpg",
+    "note": "modern portrait"
   },
   {
     "src": "./gallery-assets/illustration5.png",
