@@ -109,12 +109,10 @@ function focusWindow(win) {
 
 /* NEW maximize/restore functions */
 function maximizeWindow(win) {
-  // Save current dimensions before maximizing
-  win.dataset.prevTop = win.style.top || "50px";
-  win.dataset.prevLeft = win.style.left || "50px";
-  win.dataset.prevWidth = win.style.width || win.dataset.defaultW + "px";
-  win.dataset.prevHeight = win.style.height || win.dataset.defaultH + "px";
+  win.dataset.wasManuallyMaximized = "true";
 
+  // Save the HTML defaults if not already saved (so drag-from-fullscreen
+  // can unmark maximized class but still allow button to restore defaults)
   win.classList.add("is-maximized");
   win.style.top = "0";
   win.style.left = "0";
@@ -125,12 +123,14 @@ function maximizeWindow(win) {
 
 function restoreWindow(win) {
   win.classList.remove("is-maximized");
+  delete win.dataset.wasManuallyMaximized;
 
-  // Restore saved values, or fallback to defaults
-  win.style.top = win.dataset.prevTop || "50px";
-  win.style.left = win.dataset.prevLeft || "50px";
-  win.style.width = win.dataset.prevWidth || win.dataset.defaultW + "px";
-  win.style.height = win.dataset.prevHeight || win.dataset.defaultH + "px";
+  // Always restore to the HTML-defined defaults (data-default-* attributes)
+  // so the maximize button always brings the window back to its original size
+  win.style.top = (win.dataset.defaultTop || "50") + "px";
+  win.style.left = (win.dataset.defaultLeft || "50") + "px";
+  win.style.width = win.dataset.defaultW + "px";
+  win.style.height = win.dataset.defaultH + "px";
 
   win.style.borderRadius = "";
 }
@@ -175,6 +175,10 @@ document.querySelectorAll(".window").forEach((win) => {
     e.stopPropagation();
     if (win.classList.contains("is-maximized")) {
       restoreWindow(win);
+    } else if (win.dataset.wasManuallyMaximized === "true") {
+      // Window was dragged out of fullscreen — clicking maximize again
+      // should restore to defaults, not go fullscreen again
+      restoreWindow(win);
     } else {
       maximizeWindow(win);
     }
@@ -196,12 +200,10 @@ document.querySelectorAll(".window-header").forEach((header) => {
 
     if (win.classList.contains("is-maximized")) {
       // Keep fullscreen size but remove the is-maximized class
-      // so CSS !important rules don't block dragging
+      // so CSS !important rules don't block dragging.
+      // Do NOT overwrite dataset.prev* — those store the pre-maximize
+      // dimensions so the maximize button can restore to defaults.
       const stageRect = stage.getBoundingClientRect();
-      win.dataset.prevTop = "0";
-      win.dataset.prevLeft = "0";
-      win.dataset.prevWidth = stageRect.width + "px";
-      win.dataset.prevHeight = stageRect.height + "px";
       win.classList.remove("is-maximized");
       win.style.top = "0";
       win.style.left = "0";
