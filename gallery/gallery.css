@@ -35,16 +35,38 @@ body::-webkit-scrollbar {
 .gallery-header {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  padding: 10px;
+  padding-left: 30px;
   background-color: gray;
+  margin-bottom: 50px;
+}
+
+h1 {
+  font-family: "Homemade Apple", cursive;
+  font-size: 2.5rem;
+  color: #5a3e2b;
+  text-align: center;
 }
 
 .btn-go-back {
-  text-decoration: none;
-  background-color: beige;
-  border-radius: 10px;
-  font-size: 15px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background-color: #f8eecf;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-go-back:hover {
+  background-color: #f4dca3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
 }
 
 /* Sidebar */
@@ -83,7 +105,24 @@ body::-webkit-scrollbar {
   gap: 40px;
   padding: 20px;
   align-items: center;
+  box-sizing: border-box;
 }
+
+@media (max-width: 900px) {
+  .gallery {
+    gap: 25px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 10px;
+  }
+}
+
 .gallery-item {
   break-inside: avoid;
   text-align: center;
@@ -97,12 +136,12 @@ body::-webkit-scrollbar {
   padding: 10px;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.55); /* darker + more spread */
+  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.55);
 }
 
 .gallery-item:hover img {
   transform: scale(1.03);
-  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.75); /* deeper hover shadow */
+  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.75);
 }
 .gallery-item p {
   margin-top: 20px;
@@ -138,10 +177,32 @@ body::-webkit-scrollbar {
 }
 #closeModal {
   position: absolute;
-  top: 10px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 20px;
+  top: 1px;
+  right: -2px;
+  width: 28px;
+  height: 28px;
+  color: #5a3e2b;
+  font-weight: semi-bold;
+  font-size: 1.5em;
   cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  background: none;
+}
+#closeModal:hover {
+  color: #332419;
+}
+
+.gallery-footer {
+  bottom: 0;
+  width: 100%;
+  background-color: #f8eecf;
+  color: #333;
+  text-align: center;
+  padding: 15px 20px;
+  font-size: 14px;
+  border-top: 2px solid #e0cfa3;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15);
 }

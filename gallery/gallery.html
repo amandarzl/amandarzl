@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="gallery.css" />
   </head>
   <body>
@@ -23,8 +27,10 @@
     <!-- Empty gallery container -->
 
     <header class="gallery-header">
-      <div></div>
-      <button class="btn-go-back" id="goBack">Go Back</button>
+      <div>
+        <h1>My Illustrations</h1>
+      </div>
+      <button class="btn-go-back" id="goBack">← Back</button>
     </header>
     <div id="gallery" class="gallery"></div>
 
@@ -37,6 +43,10 @@
         <p id="modalNote"></p>
       </div>
     </div>
+
+    <footer class="gallery-footer">
+      <p>© 2021 Amanda's Gallery · All rights reserved</p>
+    </footer>
 
     <script src="gallery.js"></script>
   </body>
