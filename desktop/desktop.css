@@ -2,13 +2,13 @@
 :root {
   --cream: #f2ecdc;
   --cream-deep: #e7dcc2;
-  --sage: linear-gradient(to bottom, #d8ecf0 0%, #dedccc 100%);
+  --sage: linear-gradient(to bottom, #faf5e6 0%, #c9ddd5 100%);
   --sage-dark: #7e9470;
   --lilac: #c9aedb;
   --terracotta: #d98e6b;
   --terracotta-dark: #c97953;
   --ink: #4a4339;
-  --ink-soft: #6e6555;
+  --ink-soft: #5f645f;
   --cloud: #fbf7ee;
   --shadow: rgba(74, 67, 57, 0.18);
   --panel-border-light: #ffffff;
@@ -71,7 +71,7 @@ body {
 /* ============ Menu bar ============ */
 .menubar {
   height: 34px;
-  background: rgb(44, 75, 44);
+  background: var(--ink-soft);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -276,13 +276,13 @@ body {
 }
 .window-control:hover {
   transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.24);
+  background: #ffffff3d;
 }
 .window-control--close {
-  background: #c95b5b;
+  background: #d16b6b;
 }
 .window-control--close:hover {
-  background: #d96a6a;
+  background: #e67474;
 }
 .window-control--min {
   background: #d4b157;
