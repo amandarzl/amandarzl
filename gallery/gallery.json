@@ -1,6 +1,6 @@
 [
   {
-    "src": "../assets/wallpaper2.jpg",
+    "src": "https://lh3.googleusercontent.com/d/1xCzN02FpLrKyCFpvq47fx6fShtL1bDk7",
     "title": "dreamscape.jpg",
     "note": "A surreal night illustration."
   },
@@ -12,7 +12,7 @@
   {
     "src": "./gallery-assets/illustration2.png",
     "title": "plantita.jpg",
-    "note": "Urban sketch with neon tones."
+    "note": "study: experimenting with colors."
   },
   {
     "src": "./gallery-assets/illustration3.png",
@@ -20,13 +20,38 @@
     "note": "escape for 5pm sunsets"
   },
   {
-    "src": "./gallery-assets/illustration4.jpg",
-    "title": "pink.jpg",
-    "note": "modern portrait"
+    "src": "https://res.cloudinary.com/rupxje8y/image/upload/v1785048112/File_-_2026-07-26T06_37_00_oatkyb.png",
+    "title": "her portrait.jpg",
+    "note": "semi-realist portrait"
   },
   {
     "src": "./gallery-assets/illustration5.png",
     "title": "her.jpg",
     "note": "OC design."
+  },
+  {
+    "src": "https://res.cloudinary.com/rupxje8y/image/upload/v1785048115/File_-_2026-07-26T06_41_09_nbwxrr.png",
+    "title": "everyday-outfit.jpg",
+    "note": "calm vibes of everyday life."
+  },
+  {
+    "src": "https://res.cloudinary.com/rupxje8y/image/upload/v1785048114/File_-_2026-07-26T06_41_07_uca1eu.png",
+    "title": "pride&prejudice.jpg",
+    "note": "Fanart"
+  },
+  {
+    "src": "https://res.cloudinary.com/rupxje8y/image/upload/v1785048113/File_-_2026-07-26T06_39_16_qx7ihf.jpg",
+    "title": "ponytail.jpg",
+    "note": "sketches by acy."
+  },
+  {
+    "src": "https://res.cloudinary.com/rupxje8y/image/upload/v1785048113/File_-_2026-07-26T06_39_12_jjrgyy.jpg",
+    "title": "character-studies.jpg",
+    "note": "sketches by acy."
+  },
+  {
+    "src": "https://res.cloudinary.com/rupxje8y/image/upload/v1785047580/IMG_2760_zaf4qy.jpg",
+    "title": "take-a-pic.jpg",
+    "note": "sketches by acy."
   }
 ]

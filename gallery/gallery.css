@@ -35,7 +35,7 @@ body::-webkit-scrollbar {
 .gallery-header {
   display: flex;
   justify-content: space-between;
-  gap: 25px;
+  gap: 10px;
   padding: 10px;
   background-color: gray;
 }
@@ -80,8 +80,9 @@ body::-webkit-scrollbar {
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  padding: 40px;
+  gap: 40px;
+  padding: 20px;
+  align-items: center;
 }
 .gallery-item {
   break-inside: avoid;
@@ -89,7 +90,7 @@ body::-webkit-scrollbar {
 }
 
 .gallery-item img {
-  width: 80%;
+  width: 90%;
   display: block;
   margin: 0 auto;
   cursor: pointer;
