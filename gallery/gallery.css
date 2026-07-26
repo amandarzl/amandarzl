@@ -42,7 +42,7 @@ body::-webkit-scrollbar {
 
 h1 {
   font-family: "Homemade Apple", cursive;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   color: #5a3e2b;
   text-align: center;
 }
@@ -54,9 +54,9 @@ h1 {
   background-color: #f8eecf;
   color: #333;
   border: none;
+  font-size: clamp(0.7rem, 2vw, 0.8em);
+  padding: clamp(4px, 1.5vw, 10px) clamp(10px, 3vw, 18px);
   border-radius: 20px;
-  padding: 8px 18px;
-  font-size: 14px;
   font-weight: 600;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
   cursor: pointer;
