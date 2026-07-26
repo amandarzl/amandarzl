@@ -1,6 +1,6 @@
 :root {
   --cream: #f2ecdc;
-  --sage: #9cae8c;
+  --sage: linear-gradient(to bottom, #d8ecf0 0%, #dedccc 100%);
   --panel-border-light: #ffffff;
   --panel-border-mid: #8a8a8a;
   --panel-border-dark: #000000;

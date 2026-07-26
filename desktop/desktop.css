@@ -2,7 +2,7 @@
 :root {
   --cream: #f2ecdc;
   --cream-deep: #e7dcc2;
-  --sage: #9cae8c;
+  --sage: linear-gradient(to bottom, #d8ecf0 0%, #dedccc 100%);
   --sage-dark: #7e9470;
   --lilac: #c9aedb;
   --terracotta: #d98e6b;
