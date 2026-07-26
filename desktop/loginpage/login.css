@@ -41,7 +41,7 @@ body {
       rgba(255, 255, 255, 0.35),
       rgba(255, 255, 255, 0.08)
     ),
-    url("/assets/wallpaper2.jpg");
+    url("../../assets/wallpaper2.jpg");
   background-position: center, center;
   background-size: cover, cover;
   background-repeat: no-repeat, no-repeat;
