@@ -13,6 +13,10 @@ setInterval(updateClock, 1000 * 30);
 /* ============ Window management ============ */
 let topZ = 100;
 
+function isMobile() {
+  return window.innerWidth <= 720;
+}
+
 function updateDockForWindow(win) {
   const windowId = win.id;
   const dockItem = document.querySelector(
@@ -73,6 +77,13 @@ function openWindow(id) {
     win.style.width = win.dataset.defaultW + "px";
     win.style.height = win.dataset.defaultH + "px";
 
+    // On mobile, open at a viewport-friendly size (inline styles so
+    // the drag handler can still override them)
+    if (isMobile()) {
+      win.style.width = "90vw";
+      win.style.left = "5vw";
+    }
+
     // Only reorder dock when opening from closed
     bringDockItemToFront(win);
   }
@@ -131,6 +142,12 @@ function restoreWindow(win) {
   win.style.left = (win.dataset.defaultLeft || "50") + "px";
   win.style.width = win.dataset.defaultW + "px";
   win.style.height = win.dataset.defaultH + "px";
+
+  // On mobile, restore to a viewport-friendly size
+  if (isMobile()) {
+    win.style.width = "90vw";
+    win.style.left = "5vw";
+  }
 
   win.style.borderRadius = "";
 }

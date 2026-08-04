@@ -355,7 +355,6 @@ canvas.addEventListener("click", (e) => {
     return;
   }
 
-  dismissedStation = null;
   player.target = {
     x: station.x + station.width / 2,
     y: station.y + station.height / 2,

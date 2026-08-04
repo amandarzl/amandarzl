@@ -181,8 +181,8 @@ body {
 }
 
 .folder-icon {
-  width: 60px;
-  height: 60px;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,7 +198,7 @@ body {
 
 .folder-label {
   font-family: var(--font-display);
-  font-size: 12.5px;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--ink);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -377,7 +377,7 @@ body {
 /* ============ Dock ============ */
 .dock {
   position: fixed;
-  bottom: 25px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -401,15 +401,15 @@ body {
   align-items: center;
   cursor: pointer;
   font-size: 26px;
-  padding: 4px 8px;
+  padding: 2px 4px;
   border-radius: 12px;
   transition: transform 0.15s ease;
   position: relative;
 }
 
 .dock-item img {
-  width: 42px;
-  height: 42px;
+  width: 2.5rem;
+  height: 2.5rem;
   object-fit: cover;
   display: block;
 }
@@ -418,10 +418,10 @@ body {
 }
 .dock-item i {
   position: absolute;
-  bottom: -22px;
   font-family: var(--font-display);
   font-style: normal;
-  font-size: 15px;
+  bottom: -18px;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--ink);
   background: var(--cloud);
@@ -446,6 +446,7 @@ body {
 
 .dock-item--exit span {
   color: var(--terracotta-dark);
+  font-size: 2rem;
 }
 
 /* ============ Logout modal ============ */
@@ -530,10 +531,10 @@ body {
   .sticker {
     display: none;
   }
-  .window {
+  /* .window {
     width: 90vw !important;
     left: 5vw !important;
-  }
+  } */
   .menubar-item {
     display: none;
   }
