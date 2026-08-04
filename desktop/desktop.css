@@ -377,16 +377,16 @@ body {
 /* ============ Dock ============ */
 .dock {
   position: fixed;
-  bottom: 40px;
+  bottom: 44px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: flex-end;
-  gap: 6px;
+  gap: 10px;
   background: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(14px);
-  border-radius: 20px;
-  padding: 8px 14px;
+  border-radius: 14px;
+  padding: 8px 12px;
   box-shadow:
     0 10px 30px var(--shadow),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -400,16 +400,16 @@ body {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  font-size: 26px;
+  font-size: 20px;
   padding: 2px 4px;
-  border-radius: 12px;
+  border-radius: 10px;
   transition: transform 0.15s ease;
   position: relative;
 }
 
 .dock-item img {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   object-fit: cover;
   display: block;
 }
@@ -420,12 +420,12 @@ body {
   position: absolute;
   font-family: var(--font-display);
   font-style: normal;
-  bottom: -18px;
-  font-size: 0.8rem;
+  bottom: -20px;
+  font-size: 0.65rem;
   font-weight: 700;
   color: var(--ink);
   background: var(--cloud);
-  padding: 1px 8px;
+  padding: 1px 6px;
   border-radius: 8px;
   white-space: nowrap;
   opacity: 0;
@@ -438,15 +438,15 @@ body {
 
 .dock-divider {
   width: 1px;
-  height: 34px;
+  height: 24px;
   background: rgba(74, 67, 57, 0.2);
-  margin: 0 4px;
+  margin: 0 3px;
   align-self: center;
 }
 
 .dock-item--exit span {
   color: var(--terracotta-dark);
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 /* ============ Logout modal ============ */
