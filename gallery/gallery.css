@@ -35,14 +35,14 @@ body::-webkit-scrollbar {
 .gallery-header {
   display: flex;
   justify-content: space-between;
-  padding-left: 30px;
+  padding-left: 15px;
   background-color: gray;
   margin-bottom: 50px;
 }
 
 h1 {
   font-family: "Homemade Apple", cursive;
-  font-size: clamp(1.7rem, 5vw, 2.5rem);
+  font-size: clamp(1.4rem, 5vw, 2.5rem);
   margin-left: 20px;
   color: #5a3e2b;
   text-align: center;
@@ -128,7 +128,7 @@ h1 {
 .gallery {
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 40px;
   padding: 20px;
   margin: 0 30px;
@@ -149,6 +149,21 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 15px;
+  }
+  .gallery img {
+    width: 50%;
+    height: auto;
+  }
+  .header-actions {
+    position: static;
   }
 }
 
