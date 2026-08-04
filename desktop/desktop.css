@@ -198,7 +198,7 @@ body {
 
 .folder-label {
   font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: 600;
   color: var(--ink);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -323,25 +323,29 @@ body {
   font-family: var(--font-display);
   color: var(--ink);
   margin: 0 0 4px;
-  font-size: 21px;
+  font-size: 1rem;
 }
 .window-body h3 {
   font-family: var(--font-display);
   color: var(--ink);
-  font-size: 15px;
+  font-size: 0.8rem;
   margin: 16px 0 8px;
 }
 .window-sub {
   font-style: italic;
   color: var(--terracotta-dark);
   margin: 0 0 12px;
-  font-size: 13px;
+  font-size: 0.7rem;
+}
+.window-p {
+  font-size: 0.6rem;
 }
 .window-list {
   margin: 0;
   padding-left: 18px;
 }
 .window-list li {
+  font-size: 0.6rem;
   margin-bottom: 4px;
 }
 
@@ -479,11 +483,11 @@ body {
 .modal h3 {
   font-family: var(--font-display);
   margin: 0 0 8px;
-  font-size: 18px;
+  font-size: 1rem;
   color: var(--ink);
 }
 .modal p {
-  font-size: 13px;
+  font-size: 0.7rem;
   color: var(--ink-soft);
   margin: 0 0 18px;
 }
