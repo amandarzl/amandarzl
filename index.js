@@ -389,7 +389,7 @@ function drawPlayer() {
     frameCount++;
     if (frameCount % 10 === 0) frameX = (frameX + 1) % 4;
   } else {
-    frameX = 0; // idle frame when not moving
+    frameX = 0;
   }
 
   ctx.drawImage(
@@ -410,6 +410,7 @@ function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
 
+  // Manual movement
   if (keys["ArrowUp"] && canMove(player.x, player.y - player.speed))
     player.y -= player.speed;
   if (keys["ArrowDown"] && canMove(player.x, player.y + player.speed))
@@ -419,7 +420,7 @@ function gameLoop() {
   if (keys["ArrowRight"] && canMove(player.x + player.speed, player.y))
     player.x += player.speed;
 
-  // Axis-aligned auto-walk with obstacle handling
+  // Auto-walk with obstacle handling
   if (player.target) {
     let dx = player.target.x - player.x;
     let dy = player.target.y - player.y;
@@ -428,12 +429,12 @@ function gameLoop() {
       let newX = player.x + Math.sign(dx) * player.speed;
       if (canMove(newX, player.y)) {
         player.x = newX;
-        frameY = dx > 0 ? 1 : 2; // right or left
+        frameY = dx > 0 ? 1 : 2;
       } else if (Math.abs(dy) > 1) {
         let newY = player.y + Math.sign(dy) * player.speed;
         if (canMove(player.x, newY)) {
           player.y = newY;
-          frameY = dy > 0 ? 0 : 3; // down or up
+          frameY = dy > 0 ? 0 : 3;
         }
       }
     } else if (Math.abs(dy) > 1) {
@@ -450,7 +451,7 @@ function gameLoop() {
       }
     } else {
       player.target = null;
-      frameX = 0; // reset to idle frame
+      frameX = 0;
     }
   }
 
@@ -459,20 +460,22 @@ function gameLoop() {
   const near = nearStation();
   updateHint(near);
 
-  // // Walls = red
-  // ctx.strokeStyle = "rgba(255, 0, 0, 0.6)";
-  // ctx.lineWidth = 2;
-  // walls.forEach(w => {
-  //   ctx.strokeRect(w.x, w.y, w.width, w.height);
-  // });
-
-  // // Stations = green
-  // ctx.strokeStyle = "rgba(0, 255, 0, 0.6)";
-  // stations.forEach(st => {
-  //   ctx.strokeRect(st.x, st.y, st.width, st.height);
-  // });
-
   requestAnimationFrame(gameLoop);
 }
 
-bg.onload = () => gameLoop();
+bg.onload = () => {
+  requestAnimationFrame(gameLoop);
+};
+
+// // Walls = red
+// ctx.strokeStyle = "rgba(255, 0, 0, 0.6)";
+// ctx.lineWidth = 2;
+// walls.forEach(w => {
+//   ctx.strokeRect(w.x, w.y, w.width, w.height);
+// });
+
+// // Stations = green
+// ctx.strokeStyle = "rgba(0, 255, 0, 0.6)";
+// stations.forEach(st => {
+//   ctx.strokeRect(st.x, st.y, st.width, st.height);
+// });
