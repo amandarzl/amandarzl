@@ -1,38 +1,94 @@
+// ── CANVAS SETUP ─────────────────────────────────
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = 640;
 canvas.height = 480;
 
+// ── ASSETS ─────────────────────────────────
 const bg = new Image();
 bg.src = "assets/bedroom.png";
-
 const sprite = new Image();
 sprite.src = "assets/character.png";
 
+// ── PRE-RENDERED BACKGROUND ──────────────────────
+const bgCanvas = document.createElement("canvas");
+bgCanvas.width = 640;
+bgCanvas.height = 480;
+const bgCtx = bgCanvas.getContext("2d");
+
+// ── SPRITE FRAME SETUP ───────────────────────────
+const SPRITE_W = 320;
+const SPRITE_H = 320;
+const spriteFrames = [];
+
+// ── PLAYER STATE ─────────────────────────────────
 let player = {
   x: 150,
   y: 220,
   width: 2,
   height: 2,
-  speed: 2,
+  speed: 120,
   target: null,
 };
 
+let lastTime = 0;
+
+// ── INPUT & ANIMATION STATE ──────────────────────
 let keys = {};
 let frameX = 0;
 let frameY = 0;
 let frameCount = 0;
 
+// ── RADIO / MUSIC SYSTEM ─────────────────────────
 const radioFiles = [
   "assets/songs/song1.mp3",
   "assets/songs/song2.mp3",
   "assets/songs/song3.mp3",
 ];
 
+const MUSIC_STORAGE_KEY = "musicState";
 let radioIndex = -1;
 const radioAudio = new Audio();
 radioAudio.loop = true;
+
+function saveMusicState() {
+  if (radioIndex === -1) {
+    localStorage.removeItem(MUSIC_STORAGE_KEY);
+    return;
+  }
+  localStorage.setItem(
+    MUSIC_STORAGE_KEY,
+    JSON.stringify({
+      index: radioIndex,
+      time: radioAudio.currentTime || 0,
+    }),
+  );
+}
+
+function restoreMusicState() {
+  const saved = localStorage.getItem(MUSIC_STORAGE_KEY);
+  if (!saved) return false;
+
+  try {
+    const state = JSON.parse(saved);
+    if (
+      typeof state.index !== "number" ||
+      state.index < 0 ||
+      state.index >= radioFiles.length
+    ) {
+      return false;
+    }
+    radioIndex = state.index;
+    radioAudio.src = radioFiles[radioIndex];
+    radioAudio.currentTime = state.time || 0;
+    showMusicNotes();
+    return true;
+  } catch (e) {
+    console.warn("Could not restore music state:", e);
+    return false;
+  }
+}
 
 function startRadioTrack() {
   radioAudio.pause();
@@ -41,14 +97,17 @@ function startRadioTrack() {
   radioAudio.play().catch(() => {
     console.warn("Audio playback blocked until user interacts with the page.");
   });
+  saveMusicState();
 }
 
 function stopRadio() {
   radioAudio.pause();
   radioAudio.currentTime = 0;
   hideMusicNotes();
+  saveMusicState();
 }
 
+// ── MUSIC NOTES INDICATOR ────────────────────────
 const musicNotesEl = document.getElementById("music-notes");
 
 function showMusicNotes() {
@@ -80,11 +139,12 @@ function playMusic() {
     return;
   }
 
-  stopRadio();
   radioIndex = -1;
+  stopRadio();
   hideMusicNotes();
 }
 
+// ── CONTACT MODAL ────────────────────────────────
 const contactModal = document.getElementById("contact-modal");
 const closeContactModalBtn = document.getElementById("close-contact-modal");
 
@@ -116,14 +176,18 @@ if (contactModal) {
   });
 }
 
+// ── PAGE NAVIGATION ──────────────────────────────
 function openGallery() {
+  saveMusicState();
   window.location.href = "gallery/gallery.html";
 }
 
 function openDesktop() {
+  saveMusicState();
   window.location.href = "desktop/loginpage/login.html";
 }
 
+// ── SLEEP OVERLAY ────────────────────────────────
 const sleepOverlay = document.getElementById("sleep-overlay");
 let sleeping = false;
 
@@ -142,9 +206,9 @@ function restHere() {
     return;
   }
 
+  radioIndex = -1;
   stopRadio();
   hideMusicNotes();
-  radioIndex = -1;
   sleeping = true;
   sleepOverlay.classList.add("active");
   sleepOverlay.setAttribute("aria-hidden", "false");
@@ -154,6 +218,7 @@ function restHere() {
   sleepOverlay.addEventListener("mousemove", wakeFromSleep, { once: true });
 }
 
+// ── INTERACTIVE STATIONS ─────────────────────────
 const stations = [
   {
     name: "contact",
@@ -183,12 +248,14 @@ const stations = [
   { name: "radio", x: 370, y: 110, width: 40, height: 20, action: playMusic },
 ];
 
+// Return the station that contains the given point, if any
 function stationAtPoint(x, y) {
   return stations.find(
     (st) => x > st.x && x < st.x + st.width && y > st.y && y < st.y + st.height,
   );
 }
 
+// ── WALLS (COLLISION BOUNDARIES) ─────────────────
 const walls = [
   { x: 0, y: 0, width: 610, height: 110 },
   { x: 0, y: 400, width: 640, height: 10 },
@@ -221,14 +288,19 @@ const hintText = document.getElementById("hintText");
 const yesBtn = document.getElementById("stationYes");
 const noBtn = document.getElementById("stationNo");
 let dismissedStation = null;
+let lastNearStation = null;
 
 function updateHint(near) {
   const modalOpen = contactModal && contactModal.classList.contains("active");
   const sleepOpen = sleepOverlay && sleepOverlay.classList.contains("active");
   if (modalOpen || sleepOpen) {
-    hintEl.style.display = "none";
+    lastNearStation = null;
+    if (hintEl.style.display !== "none") hintEl.style.display = "none";
     return;
   }
+
+  if (near === lastNearStation) return;
+  lastNearStation = near;
 
   if (near && near !== dismissedStation) {
     if (near.name === "radio") {
@@ -271,7 +343,6 @@ function updateHint(near) {
       hintEl.style.display = "none";
     };
 
-    // Position popup relative to canvas
     const rect = canvas.getBoundingClientRect();
     hintEl.style.left = rect.width / 2 + "px";
     hintEl.style.top = rect.height - 36 + "px";
@@ -329,7 +400,7 @@ window.addEventListener("keydown", (e) => {
       near.action();
       // stop auto-walk when interacting
       player.target = null;
-      frameX = 0; // reset to idle frame
+      frameX = 0;
     }
   }
 });
@@ -392,70 +463,70 @@ function drawPlayer() {
     frameX = 0;
   }
 
-  ctx.drawImage(
-    sprite,
-    frameX * 320,
-    frameY * 320,
-    320,
-    320,
-    player.x,
-    player.y,
-    player.width * 36,
-    player.height * 36,
-  );
+  const spriteFrame = spriteFrames[frameY] && spriteFrames[frameY][frameX];
+  if (spriteFrame) {
+    ctx.drawImage(spriteFrame, player.x, player.y);
+  }
 }
 
 // ── GAME LOOP ────────────────────────────────────
-function gameLoop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+function gameLoop(timestamp) {
+  if (lastTime === 0) lastTime = timestamp;
+  const dt = Math.min((timestamp - lastTime) / 1000, 0.05);
+  lastTime = timestamp;
 
-  // Manual movement
-  if (keys["ArrowUp"] && canMove(player.x, player.y - player.speed))
-    player.y -= player.speed;
-  if (keys["ArrowDown"] && canMove(player.x, player.y + player.speed))
-    player.y += player.speed;
-  if (keys["ArrowLeft"] && canMove(player.x - player.speed, player.y))
-    player.x -= player.speed;
-  if (keys["ArrowRight"] && canMove(player.x + player.speed, player.y))
-    player.x += player.speed;
+  const sleepActive = sleepOverlay && sleepOverlay.classList.contains("active");
 
-  // Auto-walk with obstacle handling
-  if (player.target) {
-    let dx = player.target.x - player.x;
-    let dy = player.target.y - player.y;
+  if (!sleepActive) {
+    ctx.drawImage(bgCanvas, 0, 0);
 
-    if (Math.abs(dx) > 1) {
-      let newX = player.x + Math.sign(dx) * player.speed;
-      if (canMove(newX, player.y)) {
-        player.x = newX;
-        frameY = dx > 0 ? 1 : 2;
-      } else if (Math.abs(dy) > 1) {
-        let newY = player.y + Math.sign(dy) * player.speed;
-        if (canMove(player.x, newY)) {
-          player.y = newY;
-          frameY = dy > 0 ? 0 : 3;
-        }
-      }
-    } else if (Math.abs(dy) > 1) {
-      let newY = player.y + Math.sign(dy) * player.speed;
-      if (canMove(player.x, newY)) {
-        player.y = newY;
-        frameY = dy > 0 ? 0 : 3;
-      } else if (Math.abs(dx) > 1) {
-        let newX = player.x + Math.sign(dx) * player.speed;
+    // Arrow-key movement with collision checks
+    if (keys["ArrowUp"] && canMove(player.x, player.y - player.speed * dt))
+      player.y -= player.speed * dt;
+    if (keys["ArrowDown"] && canMove(player.x, player.y + player.speed * dt))
+      player.y += player.speed * dt;
+    if (keys["ArrowLeft"] && canMove(player.x - player.speed * dt, player.y))
+      player.x -= player.speed * dt;
+    if (keys["ArrowRight"] && canMove(player.x + player.speed * dt, player.y))
+      player.x += player.speed * dt;
+
+    // Auto-walk toward the clicked station target
+    if (player.target) {
+      let dx = player.target.x - player.x;
+      let dy = player.target.y - player.y;
+
+      if (Math.abs(dx) > 1) {
+        let newX = player.x + Math.sign(dx) * player.speed * dt;
         if (canMove(newX, player.y)) {
           player.x = newX;
           frameY = dx > 0 ? 1 : 2;
+        } else if (Math.abs(dy) > 1) {
+          let newY = player.y + Math.sign(dy) * player.speed * dt;
+          if (canMove(player.x, newY)) {
+            player.y = newY;
+            frameY = dy > 0 ? 0 : 3;
+          }
         }
+      } else if (Math.abs(dy) > 1) {
+        let newY = player.y + Math.sign(dy) * player.speed * dt;
+        if (canMove(player.x, newY)) {
+          player.y = newY;
+          frameY = dy > 0 ? 0 : 3;
+        } else if (Math.abs(dx) > 1) {
+          let newX = player.x + Math.sign(dx) * player.speed * dt;
+          if (canMove(newX, player.y)) {
+            player.x = newX;
+            frameY = dx > 0 ? 1 : 2;
+          }
+        }
+      } else {
+        player.target = null;
+        frameX = 0;
       }
-    } else {
-      player.target = null;
-      frameX = 0;
     }
-  }
 
-  drawPlayer();
+    drawPlayer();
+  }
 
   const near = nearStation();
   updateHint(near);
@@ -463,8 +534,56 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-bg.onload = () => {
+// ── GAME START ───────────────────────────────────
+function tryStartGame() {
+  if (!bgLoaded || !spriteLoaded) return;
+
+  // Resume music from a previous page if it was playing
+  if (restoreMusicState()) {
+    radioAudio.play().catch(() => {
+      console.warn(
+        "Audio playback blocked until user interacts with the page.",
+      );
+    });
+  }
   requestAnimationFrame(gameLoop);
+}
+
+// ── ASSET LOADING ────────────────────────────────
+let bgLoaded = false;
+bg.onload = () => {
+  bgCtx.drawImage(bg, 0, 0, bgCanvas.width, bgCanvas.height);
+  bgLoaded = true;
+  tryStartGame();
+};
+
+let spriteLoaded = false;
+sprite.onload = () => {
+  const pw = player.width * 36;
+  const ph = player.height * 36;
+  for (let row = 0; row < 4; row++) {
+    spriteFrames[row] = [];
+    for (let col = 0; col < 4; col++) {
+      const c = document.createElement("canvas");
+      c.width = pw;
+      c.height = ph;
+      const cctx = c.getContext("2d");
+      cctx.drawImage(
+        sprite,
+        col * SPRITE_W,
+        row * SPRITE_H,
+        SPRITE_W,
+        SPRITE_H,
+        0,
+        0,
+        pw,
+        ph,
+      );
+      spriteFrames[row][col] = c;
+    }
+  }
+  spriteLoaded = true;
+  tryStartGame();
 };
 
 // // Walls = red

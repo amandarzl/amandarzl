@@ -50,8 +50,9 @@ body {
 }
 
 #bedroom {
-  background: url("assets/bedroom.png") no-repeat center center;
-  background-size: contain;
+  /* The canvas draws the same bedroom.png each frame, so this CSS
+     background layer is redundant and only adds compositing cost.
+     Kept minimal for layout sizing. */
   display: inline-block;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -88,7 +89,9 @@ canvas {
 #music-notes img {
   width: 60px;
   height: 60px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  /* No filter: an animated GIF with a drop-shadow filter forces the
+     browser to re-rasterize the filtered layers every animation frame,
+     which is a major source of sustained CPU/GPU cost. */
 }
 
 @keyframes floatUp {
